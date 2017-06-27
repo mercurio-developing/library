@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title A Brief History of Time
+    link(rel='stylesheet',  href="/static/stylesheets/style.css" type='text/css')
+  include ./partials/_nav.pug
+  body
+    h1 Book: #{book.title}
+    include ./partials/_errors
+    form(action="" method="post")
+      p
+        label(for='title') Title
+        input#title(type='text',name="first_name" value=book.title)
+      p
+        label(for='author') Author
+        input#author(type='text',name="last_name" value=book.author)
+      p
+        label(for='genre') Genre
+        input#genre(type='text',name="genre" value=book.genre)
+      p
+        label(for='first_published' name="first_published") First Published
+        input#first_published(type='text', value=book.first_published)
+      p
+        input(type='submit', value='Update')
+    h2 Loan History
+    table
+      thead
+        tr
+          th Book
+          th Patron 
+          th Loaned on
+          th Return by 
+          th Returned on
+          th Action
+      tbody
+       each loan in loans
+            tr
+              td
+                a(href='/books/book_detail/' + loan.book.id) #{loan.book.title}
+              td
+                a(href='/patrons/patron_detail/' + loan.patron.id) #{loan.patron.first_name} #{loan.patron.last_name}
+              td #{loan.loaned_on}
+              td #{loan.return_by}
+              td #{loan.returned_on}
+              td
+                if !loan.returned_on
+                   a.button(href='/books/return_book/' + loan.book.id) Return Book
+                    

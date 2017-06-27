@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Books
+    link(rel='stylesheet',  href="/static/stylesheets/style.css" type='text/css')
+  include ./partials/_nav.pug
+  body
+    include ./partials/_filters_books.pug
+    table
+      thead
+        tr
+          th Title
+          th Author
+          th Genre
+          th Year Released
+      tbody
+        each loan in loans
+          tr
+            td
+              a(href='/books/book_detail/' + loan.book_id) #{loan.book.title}
+            td  #{loan.book.author}
+            td  #{loan.book.genre}
+            td  #{loan.book.first_published}
+         

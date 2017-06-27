@@ -1,0 +1,26 @@
+html
+    head
+        title Return Book
+        link(rel='stylesheet', href="/static/stylesheets/style.css", type='text/css')
+    body
+        include ./partials/_nav.pug       
+        h1 Return Book:
+        p
+          strong Book Title:
+          |  #{loan.book.title}
+        p
+          strong Loaned By:
+          |  #{loan.patron.first_name} #{loan.patron.last_name}
+        p
+          strong Loaned On:
+          |  #{loan.loaned_on}
+        p
+          strong Return By:
+          |  #{loan.return_by}
+        include ./partials/_errors.pug
+        form(action="" method="post")
+          p
+            label(for='returned_on') Returned on:
+            input#returned_on(type='text' value=returned_on name="returned_on")
+          p
+            input(type='submit', value='Return Book') 

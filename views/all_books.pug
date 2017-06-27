@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Books
+    link(rel='stylesheet',  href="/static/stylesheets/style.css" type='text/css')
+  include ./partials/_nav.pug
+  body
+    include ./partials/_filters_books.pug
+    table
+      thead
+        tr
+          th Title
+          th Author
+          th Genre
+          th Year Released
+      tbody
+       each book in books
+          tr
+            td
+              a(href='/books/book_detail/' + book.id) #{book.title}
+            td #{book.author}
+            td #{book.genre}
+            td #{book.first_published}
+      

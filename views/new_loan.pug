@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title New Loan
+    link(rel='stylesheet',  href="/static/stylesheets/style.css" type='text/css')
+  
+  include ./partials/_nav.pug
+  
+  body
+    h1 New Loan
+    include ./partials/_errors
+    form(action="", method="POST")
+
+        p
+          label(for='book_id') Book
+          select#book_id(name='book_id')
+            each book in books
+              option(value=book.id, name='title')= book.title
+        p
+          label(for='patron_id') Patron
+          select#patron_id(name='patron_id')
+            each patron in patrons
+              option(value=patron.id, name='first_name')= patron.first_name 
+          
+        p
+          label(for='loaned_on') Loaned on:
+          input#loaned_on(type='text', name='loaned_on', value=loaned_on)
+        p
+          label(for='return_by') Return by:
+          input#return_by(type='text', name='return_by', value=return_by)
+        p
+          input(type='submit', value='Create New Loan')

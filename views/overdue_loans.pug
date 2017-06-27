@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title Books
+    link(rel='stylesheet',  href="/static/stylesheets/style.css" type='text/css')
+  include ./partials/_nav.pug
+  body
+    include ./partials/_filters_loans.pug
+    table
+      thead
+        tr
+          th Book
+          th Patron
+          th Loaned on
+          th Return by
+          th Returned on
+          th Action
+      tbody
+        each loan in loans
+          tr
+            td
+              a(href='/books/book_detail/' + loan.book.id) #{loan.book.title}
+            td
+              a(href='/patrons/patron_detail/' + loan.patron.id) #{loan.patron.first_name} #{loan.patron.last_name}
+            td #{loan.loaned_on}
+            td #{loan.return_by}
+            td #{loan.returned_on}
+            td
+              if !loan.returned_on
+                   a.button(href='/books/return_book/' + loan.book.id) Return Book
